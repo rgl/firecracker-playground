@@ -8,6 +8,7 @@
     // default datasources.
     {
       "fileMatch": [
+        "Vagrantfile",
         "\\.(sh|ps1)$"
       ],
       "matchStrings": [
@@ -19,6 +20,7 @@
     // nuget:chocolatey datasource.
     {
       "fileMatch": [
+        "Vagrantfile",
         "\\.(sh|ps1)$"
       ],
       "matchStrings": [
@@ -31,6 +33,7 @@
     // nuget:powershellgallery datasource.
     {
       "fileMatch": [
+        "Vagrantfile",
         "\\.(sh|ps1)$"
       ],
       "matchStrings": [

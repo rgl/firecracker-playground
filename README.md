@@ -47,11 +47,13 @@ dmsetup table
 du -h /tmp/firecracker-vm-alpine0.cow.lvm
 
 # start a vm in foreground.
+# NB to shutdown the vm, use the reboot command or send an sigint to the
+#    firectl (or the firecracker) process.
 KERNEL_DEFAULT_OPTS='ro console=ttyS0 noapic reboot=k panic=1 pci=off nomodules'
 KERNEL_OPTS="${KERNEL_OPTS} random.trust_cpu=on"
 KERNEL_OPTS="${KERNEL_OPTS} ip=172.18.0.2::172.18.0.1:255.255.255.0::eth0:off"
 firectl \
-  --kernel=/tmp/firecracker-vm-alpine-vmlinux.bin \
+  --kernel=/tmp/firecracker-kernel.bin \
   --kernel-opts="$KERNEL_OPTS" \
   --root-drive=/dev/mapper/firecracker-vm-alpine0 \
   --tap-device=tap0/aa:bb:cc:00:00:00

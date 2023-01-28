@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euxo pipefail
 
+# see https://hub.docker.com/_/alpine/tags
+# renovate: datasource=docker depName=alpine extractVersion=^(?<version>[0-9]+(\.[0-9]+)+)$
+alpine_version='3.17.1'
+
 # create the alpine rootfs.
 # see https://github.com/firecracker-microvm/firecracker/blob/main/docs/getting-started.md
 # see https://github.com/firecracker-microvm/firecracker/blob/main/docs/rootfs-and-kernel-setup.md
@@ -15,7 +19,7 @@ install -m 600 /dev/null /tmp/firecracker-vm-alpine-rootfs.ext4
 truncate --size 128M /tmp/firecracker-vm-alpine-rootfs.ext4
 mkfs.ext4 -F /tmp/firecracker-vm-alpine-rootfs.ext4
 mount /tmp/firecracker-vm-alpine-rootfs.ext4 /tmp/firecracker-vm-alpine-rootfs
-nerdctl run -i --rm -v /tmp/firecracker-vm-alpine-rootfs:/rootfs alpine:3.17.1 <<'EOF'
+nerdctl run -i --rm -v /tmp/firecracker-vm-alpine-rootfs:/rootfs "alpine:$alpine_version" <<'EOF'
 set -euxo pipefail
 
 # set the root password.
@@ -47,8 +51,3 @@ EOF
 umount /tmp/firecracker-vm-alpine-rootfs
 rmdir /tmp/firecracker-vm-alpine-rootfs
 dumpe2fs /tmp/firecracker-vm-alpine-rootfs.ext4
-
-# download the example quick start kernel.
-wget -qO /tmp/firecracker-vm-alpine-vmlinux.bin \
-    https://s3.amazonaws.com/spec.ccfc.min/img/quickstart_guide/x86_64/kernels/vmlinux.bin
-file /tmp/firecracker-vm-alpine-vmlinux.bin

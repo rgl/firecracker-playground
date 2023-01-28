@@ -1,6 +1,17 @@
 ENV["VAGRANT_NO_PARALLEL"]  = "yes"
 ENV["VAGRANT_EXPERIMENTAL"] = "typed_triggers"
 
+# see https://github.com/firecracker-microvm/firecracker/releases
+# renovate: datasource=github-releases depName=firecracker-microvm/firecracker
+CONFIG_FIRECRACKER_VERSION = '1.2.0'
+
+# see https://github.com/firecracker-microvm/firectl/releases
+# renovate: datasource=github-releases depName=firecracker-microvm/firectl
+CONFIG_FIRECTL_VERSION = '0.2.0'
+
+# see https://www.kernel.org/
+CONFIG_FIRECRACKER_KERNEL_VERSION = '5.15.90'
+
 CONFIG_DNS_DOMAIN      = "test"
 CONFIG_REGISTRY_DOMAIN = "registry.#{CONFIG_DNS_DOMAIN}"
 
@@ -40,8 +51,9 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell", path: "provision-registry.sh", args: [CONFIG_REGISTRY_DOMAIN]
     config.vm.provision "shell", path: "provision-crane.sh"
     config.vm.provision "shell", path: "provision-regctl.sh"
-    config.vm.provision "shell", path: "provision-firecracker.sh"
-    config.vm.provision "shell", path: "provision-firectl.sh"
+    config.vm.provision "shell", path: "provision-firecracker.sh", args: [CONFIG_FIRECRACKER_VERSION]
+    config.vm.provision "shell", path: "provision-firectl.sh", args: [CONFIG_FIRECTL_VERSION]
+    config.vm.provision "shell", path: "provision-firecracker-kernel.sh", args: [CONFIG_FIRECRACKER_VERSION, CONFIG_FIRECRACKER_KERNEL_VERSION]
     config.vm.provision "shell", path: "provision-firecracker-vm-alpine.sh"
   end
 end
