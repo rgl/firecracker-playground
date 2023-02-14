@@ -47,6 +47,7 @@ dmsetup table
 du -h /tmp/firecracker-vm-alpine0.cow.lvm
 
 # start a vm in foreground.
+# NB you can login into the vm as root:root.
 # NB to shutdown the vm, use the reboot command or send an sigint to the
 #    firectl (or the firecracker) process.
 KERNEL_DEFAULT_OPTS='ro console=ttyS0 noapic reboot=k panic=1 pci=off nomodules'
