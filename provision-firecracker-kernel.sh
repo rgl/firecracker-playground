@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 firecracker_version="${1:-1.2.0}"
-kernel_version="${2:-5.15.90}"
+kernel_version="${2:-5.15.93}"
 kernel_tarball="linux-$kernel_version.tar.xz"
 kernel_major_version="$(echo "$kernel_version" | sed -E 's,([0-9]+)\.([0-9]+)\.([0-9]+),\1,')"
 kernel_tarball_url="https://cdn.kernel.org/pub/linux/kernel/v$kernel_major_version.x/$kernel_tarball"
