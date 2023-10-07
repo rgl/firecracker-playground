@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 # see https://github.com/firecracker-microvm/firecracker/releases
-firecracker_version="${1:-1.3.1}"
+firecracker_version="${1:-1.4.1}"
 
 # download.
 firecracker_url="https://github.com/firecracker-microvm/firecracker/releases/download/v${firecracker_version}/firecracker-v${firecracker_version}-x86_64.tgz"

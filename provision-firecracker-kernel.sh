@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-firecracker_version="${1:-1.3.1}"
+firecracker_version="${1:-1.4.1}"
 kernel_version="${2:-6.1.56}"
 kernel_tarball="linux-$kernel_version.tar.xz"
 kernel_major_version="$(echo "$kernel_version" | sed -E 's,([0-9]+)\.([0-9]+)\.([0-9]+),\1,')"

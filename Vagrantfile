@@ -3,7 +3,7 @@ ENV["VAGRANT_EXPERIMENTAL"] = "typed_triggers"
 
 # see https://github.com/firecracker-microvm/firecracker/releases
 # renovate: datasource=github-releases depName=firecracker-microvm/firecracker
-CONFIG_FIRECRACKER_VERSION = '1.3.1'
+CONFIG_FIRECRACKER_VERSION = '1.4.1'
 
 # see https://github.com/firecracker-microvm/firectl/releases
 # renovate: datasource=github-releases depName=firecracker-microvm/firectl
