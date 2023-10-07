@@ -3,7 +3,7 @@ set -euxo pipefail
 
 # see https://hub.docker.com/_/alpine/tags
 # renovate: datasource=docker depName=alpine extractVersion=^(?<version>[0-9]+(\.[0-9]+)+)$
-alpine_version='3.17.2'
+alpine_version='3.18.4'
 
 # create the alpine rootfs.
 # see https://github.com/firecracker-microvm/firecracker/blob/main/docs/getting-started.md
