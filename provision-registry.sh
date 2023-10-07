@@ -68,16 +68,11 @@ EOF
 
 # launch the registry.
 # see https://docs.docker.com/registry/deploying/
-# TODO use --restart unless-stopped when containerd supports it (should be available after containerd 1.6.8).
-#      see https://github.com/containerd/nerdctl/issues/945
-#      see https://github.com/containerd/containerd/pull/6744
-#      see https://github.com/containerd/containerd/blob/main/runtime/restart/restart.go   # main has unless-stopped
-#      see https://github.com/containerd/containerd/blob/v1.6.8/runtime/restart/restart.go # but 1.6.8 does not.
 echo "starting the registry $registry_url..."
 install -d -m 700 /opt/registry/data
 nerdctl pull --quiet "$registry_image"
 nerdctl run -d \
-    --restart always \
+    --restart unless-stopped \
     --name registry \
     -p 5000:5000 \
     -v /opt/registry/etc:/etc/docker/registry:ro \
